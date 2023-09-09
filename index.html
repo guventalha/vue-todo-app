@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <script>
+        tailwind.config = {
+          theme: {
+            extend: {
+              colors: {
+                clifford: '#cc3300',
+                myOrange:"#ff9966",
+                myYellow:"#ffcc00",
+                lightGreen:"#99cc33",
+                darkGreen:"#339900",
+                basicText:"#0e1a40"
+              }
+            }
+          }
+        }
+      </script>
+      <link rel="stylesheet" href="style.css">
+    <title>Document</title>
+</head>
+<body class="bg-[#deded3]">
+    <div id="app">
+        <div class="flex flex-col justify-start items-center h-screen w-full w-full sm:w-[400px] mx-auto px-2 py-24">
+          <p class="text-basicText text-xl font-bold my-4">Vue Todo App</p>
+          <form class="flex flex-col justify-center items-center w-full space-y-6" @submit.prevent="addTodo">
+            <div class="flex justify-start items-center w-full space-x-2">
+                <input type="text" name="todo" id="todo" placeholder="Enter a todo..." class="flex-1 border-2 py-2 px-3 border-lightGreen hover:border-darkGreen focus:border-darkGreen focus-within:ring-darkGreen focus-within:border-2 focus-within:ring-inset focus:ring-0 rounded-md " v-model="todo">
+                <button class="bg-darkGreen rounded-md px-4 py-2 text-center text-white border-2 border-darkGreen" >Add Todo</button>
+            </div>
+          </form>
+          <h2 class="mt-4 font-bold text-xl">Todo List</h2>
+          <ul class="flex flex-col items-center w-full mt-4 space-y-2">
+            <li v-for="item in todos" :id="item.id" :key="item.id" :class="{'bg-lightGreen':item.done, 'bg-myOrange':!item.done}" class="flex items-center w-full p-2 rounded-md">
+              <div class="flex justify-start items-center flex-1 space-x-2">
+                <input type="checkbox" :id="`todo-${item.id}`" v-model="item.done" class="w-4 h-4">
+                <label :for="`todo-${item.id}`"  class="block wrap">{{item.title}}</label>
+              </div>
+              <button @click="removeTodo(item.id)" class="bg-clifford rounded-md px-4 py-1 text-center text-white">Delete</button>
+            </li>
+          </ul>
+
+        
+        
+    </div>
+    </div>
+    <script src="app.js"></script>
+</body>
+</html>
