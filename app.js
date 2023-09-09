@@ -4,7 +4,7 @@ createApp({
     setup() {
 
         const todo = ref('')
-        const todos = ref([{ id: 1, title: "hello madafaka", done: true }])
+        const todos = ref([{ id: 1, title: "Learn VueJS!!!", done: true }])
 
         const addTodo = () => {
             todos.value.push({ id: Math.floor(Math.random() * 100) + 1, title: todo.value, })
